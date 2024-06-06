@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +43,15 @@ public class Config {
         return config.getStringList(path).stream()
                 .map(line -> ChatColor.translateAlternateColorCodes('&', line))
                 .collect(Collectors.toList());
+    }
+
+    public static HashSet<String> getStringSet(String path){
+        List<String> preventRgs = config.getStringList(path);
+        HashSet<String> preventHash = new HashSet<>();
+
+        preventRgs.stream().map(preventHash::add);
+
+        return preventHash;
     }
 
     public static void setMessage(String path, Object object) throws IOException {
