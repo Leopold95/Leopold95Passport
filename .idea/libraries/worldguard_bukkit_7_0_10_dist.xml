@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="worldguard-bukkit-7.0.10-dist">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/lib/worldguard-bukkit-7.0.10-dist.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,19 @@
+name: MelvuzePassport
+version: '${project.version}'
+main: me.leopold95.melvuzepassport.MelvuzePassport
+api-version: '1.16'
+depend:
+  - WorldGuard
+
+
+commands:
+  passport:
+    usage: "/passport <действие>"
+    description: Проводит опредленный действия с пасспортами
+    permission: melvuzepassport
+
+permissions:
+  melvuzepassport:
+    give:
+      description: "Разрешает выдачу пасспорта"
+      default: op

@@ -1,0 +1,19 @@
+allow-passport-console: false
+
+passport-item-name: "Pass"
+passport-item-type: "REDSTONE"
+passport-item-lore:
+  - "Line 1"
+  - "Line 2"
+  - "&cLine 3"
+
+prevent-leaving-regions:
+  - "Rg name 1"
+  - "Rg name 2"
+  - "Rg name 3"
+
+allowed-worlds:
+  - "world"
+
+
+
