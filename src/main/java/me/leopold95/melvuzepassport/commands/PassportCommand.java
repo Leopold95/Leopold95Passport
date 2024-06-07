@@ -9,6 +9,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+import java.util.Date;
 
 public class PassportCommand implements CommandExecutor {
     private MelvuzePassport plugin;
@@ -52,6 +60,12 @@ public class PassportCommand implements CommandExecutor {
                     break;
                 }
 
+                if(!canUse(player)){
+                    player.sendMessage(Config.getMessage("passport-give-bad-delay").
+                            replace("%globaldelay%", String.valueOf(Config.getInt("passport-give-delay-seconds"))));
+                    break;
+                }
+
                 player.getInventory().addItem(plugin.passportItem.clone());
 
                 player.sendMessage(Config.getMessage("passport-gotten"));
@@ -64,6 +78,26 @@ public class PassportCommand implements CommandExecutor {
 
     private boolean hasEmptySlots(Player player) {
         return player.getInventory().firstEmpty() != -1;
+    }
+
+    private boolean canUse(Player player){
+        if(!player.getPersistentDataContainer().has(plugin.keys.PASSPORT_COMMAND_DELAY, PersistentDataType.STRING)){
+            player.getPersistentDataContainer().set(plugin.keys.PASSPORT_COMMAND_DELAY, PersistentDataType.STRING, LocalDateTime.now().toString());
+            return true;
+        }
+
+        String lastUsage = player.getPersistentDataContainer().get(plugin.keys.PASSPORT_COMMAND_DELAY, PersistentDataType.STRING);
+        LocalDateTime savedDateTime = LocalDateTime.parse(lastUsage);
+        LocalDateTime currentDateTime = LocalDateTime.now();
+
+        long secondsElapsed = ChronoUnit.SECONDS.between(savedDateTime, currentDateTime);
+
+        if (secondsElapsed > Config.getInt("passport-give-delay-seconds")) {
+            player.getPersistentDataContainer().set(plugin.keys.PASSPORT_COMMAND_DELAY, PersistentDataType.STRING, currentDateTime.toString());
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

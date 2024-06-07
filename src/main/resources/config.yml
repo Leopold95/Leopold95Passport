@@ -19,5 +19,7 @@ prevent-leaving-regions:
 allowed-worlds:
   - "world"
 
+passport-give-delay-seconds: 10
+
 
 

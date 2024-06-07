@@ -4,3 +4,4 @@ bad-input-give: "Команда введена не верно. /passport <%acti
 inventory-full: "Очистите инвентарь для получения пасспорта"
 passport-gotten: Вы получили пасспорт
 prevent-region-left: "Вы не можете покинуть данный регион без пассорта!"
+passport-give-bad-delay: "Ожидайте %globaldelay% с момента поледней выдачи паспорта перед выдачей нового"
