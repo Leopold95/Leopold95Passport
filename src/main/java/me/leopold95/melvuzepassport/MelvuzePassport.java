@@ -7,12 +7,10 @@ import me.leopold95.melvuzepassport.commands.PassportCommandTab;
 import me.leopold95.melvuzepassport.core.Config;
 import me.leopold95.melvuzepassport.core.Items;
 import me.leopold95.melvuzepassport.core.Keys;
-import me.leopold95.melvuzepassport.listeners.PlayerJoin;
 import me.leopold95.melvuzepassport.listeners.PlayerMove;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class MelvuzePassport extends JavaPlugin {
@@ -38,18 +36,9 @@ public final class MelvuzePassport extends JavaPlugin {
         wg = WorldGuard.getInstance();
         regions = WorldGuard.getInstance().getPlatform().getRegionContainer();
 
-        //new PlayerMoveTask(this, Config.getStringSet("prevent-leaving-regions"));
-
         getCommand("passport").setExecutor(new PassportCommand(this));
         getCommand("passport").setTabCompleter(new PassportCommandTab());
 
-        getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new PlayerMove(this), this);
     }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
-
 }

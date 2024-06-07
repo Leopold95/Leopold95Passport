@@ -1,5 +1,7 @@
+#разрешить ввод команды в консоль
 allow-passport-console: false
 
+#параметры пермета пасспорта
 passport-item-name: "Pass"
 passport-item-type: "REDSTONE"
 passport-item-lore:
@@ -7,11 +9,13 @@ passport-item-lore:
   - "Line 2"
   - "&cLine 3"
 
+#регионы из которых нельзя выйти без паспорта
 prevent-leaving-regions:
   - "Rg name 1"
   - "Rg name 2"
   - "Rg name 3"
 
+#миры, в которых механика паспорта работает
 allowed-worlds:
   - "world"
 
