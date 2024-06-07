@@ -3,3 +3,4 @@ permission-bad: "У вас недосточточно прав для исопл
 bad-input-give: "Команда введена не верно. /passport <%action1%> <%player%>"
 inventory-full: "Очистите инвентарь для получения пасспорта"
 passport-gotten: Вы получили пасспорт
+prevent-region-left: "Вы не можете покинуть данный регион без пассорта!"

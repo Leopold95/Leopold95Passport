@@ -52,8 +52,7 @@ public class PassportCommand implements CommandExecutor {
                     break;
                 }
 
-                ItemStack passport = Items.createPassport(plugin.keys.PASSPORT_ITEM);
-                player.getInventory().addItem(passport);
+                player.getInventory().addItem(plugin.passportItem.clone());
 
                 player.sendMessage(Config.getMessage("passport-gotten"));
 

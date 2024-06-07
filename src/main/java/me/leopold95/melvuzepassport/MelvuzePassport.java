@@ -2,11 +2,14 @@ package me.leopold95.melvuzepassport;
 
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
+import me.leopold95.melvuzepassport.commands.PassportCommand;
+import me.leopold95.melvuzepassport.commands.PassportCommandTab;
 import me.leopold95.melvuzepassport.core.Config;
+import me.leopold95.melvuzepassport.core.Items;
 import me.leopold95.melvuzepassport.core.Keys;
-import me.leopold95.melvuzepassport.core.PlayerMoveTask;
 import me.leopold95.melvuzepassport.listeners.PlayerJoin;
 import me.leopold95.melvuzepassport.listeners.PlayerMove;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -17,19 +20,28 @@ public final class MelvuzePassport extends JavaPlugin {
     public RegionContainer regions;
     public WorldGuard wg;
     public Keys keys;
+
     public List<String> preventRegions;
+    public List<String> passportCheckWorlds;
+    public ItemStack passportItem;
 
     @Override
     public void onEnable() {
         Config.register(this);
 
-        //preventRegions = Config.getStringList("prevent-leaving-regions");
+        keys = new Keys(this);
+
+        preventRegions = Config.getStringList("prevent-leaving-regions");
+        passportCheckWorlds = Config.getStringList("allowed-worlds");
+        passportItem = Items.createPassport(keys.PASSPORT_ITEM);
 
         wg = WorldGuard.getInstance();
         regions = WorldGuard.getInstance().getPlatform().getRegionContainer();
-        keys = new Keys(this);
 
-        new PlayerMoveTask(this, Config.getStringSet("prevent-leaving-regions"));
+        //new PlayerMoveTask(this, Config.getStringSet("prevent-leaving-regions"));
+
+        getCommand("passport").setExecutor(new PassportCommand(this));
+        getCommand("passport").setTabCompleter(new PassportCommandTab());
 
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new PlayerMove(this), this);

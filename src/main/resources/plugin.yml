@@ -4,7 +4,6 @@ main: me.leopold95.melvuzepassport.MelvuzePassport
 api-version: '1.16'
 depend:
   - WorldGuard
-  - WorldEdit
 
 
 commands:
