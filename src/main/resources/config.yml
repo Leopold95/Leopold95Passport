@@ -19,6 +19,12 @@ prevent-leaving-regions:
 allowed-worlds:
   - "world"
 
+dis-allow-move:
+  from:
+    - rg2
+  to:
+    - rg1
+
 passport-give-delay-seconds: 10
 
 

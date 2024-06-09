@@ -20,6 +20,9 @@ public final class MelvuzePassport extends JavaPlugin {
     public Keys keys;
 
     public List<String> preventRegions;
+    public List<String> disAllowedFrom;
+    public List<String> disAllowedTo;
+
     public List<String> passportCheckWorlds;
     public ItemStack passportItem;
 
@@ -30,6 +33,9 @@ public final class MelvuzePassport extends JavaPlugin {
         keys = new Keys(this);
 
         preventRegions = Config.getStringList("prevent-leaving-regions");
+        disAllowedFrom = Config.getStringList("dis-allow-move.from");
+        disAllowedTo = Config.getStringList("dis-allow-move.to");
+
         passportCheckWorlds = Config.getStringList("allowed-worlds");
         passportItem = Items.createPassport(keys.PASSPORT_ITEM);
 
